@@ -5,7 +5,7 @@ kind: Deployment
 metadata:
   name: mysql
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mysql
@@ -15,8 +15,8 @@ spec:
         app: mysql
     spec:
       containers:
-        - name: 047719646308.dkr.ecr.eu-west-2.amazonaws.com/mysql:latest
-          image: 
+        - name: mysql
+          image:047719646308.dkr.ecr.eu-west-2.amazonaws.com/mysql:latest
           ports:
             - containerPort: 3306
 
