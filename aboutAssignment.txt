@@ -1,0 +1,35 @@
+This is an visitor management app 
+The app has a separate page for new visitor entry, and fetch pages for all entries and lastly another fetch entry based on visit reason.
+
+Assignment 1 :
+Fisrt we have tried to deploy this application using docker 
+
+Step 1 : 
+Created an EC2 (t2.micro) instance in AWS and connect it through or terminal via SSH. 
+
+Step 2 : 
+Updated the machine and installed docker, docer compose and git into the machine.
+
+Step 3 : 
+Cloned the repo into this vm 
+
+Step 4 :
+Under the security group section of aws for that instance open the inbound traffic to 5000 port from anywhere becuse python flask app runs on that port.
+
+Step 5 : 
+Ran  docker compose command to build the images 
+command docker-compose up --build
+Pushed the images to docker hub 
+
+Step 6 :
+Then using the public ip of the ec2 instance following by the port number we accessed the application 
+<public ip>:5000
+
+
+
+
+
+
+
+
+
