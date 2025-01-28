@@ -1,9 +1,10 @@
-from flask import Flask, render_template_string, request
-from db import get_db_connection  # Assuming get_db_connection is defined in db.py
+from flask import Flask,Blueprint, render_template_string, request
+from db import get_db_connection 
 
-app = Flask(__name__)
+# app = Flask(__name__)
+filter_visitors_app = Blueprint('filter_visitors', __name__)
 
-@app.route('/filter_visitors', methods=['GET', 'POST'])
+@filter_visitors_app.route('/filter_visitors', methods=['GET', 'POST'])
 def filter_visitors():
     rows = []
     visit_reason = None

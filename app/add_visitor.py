@@ -1,10 +1,12 @@
-from flask import Flask, render_template_string, request, redirect
-from db import get_db_connection  # Assuming get_db_connection is defined in db.py
+
+# add_visitor.py
+from flask import Blueprint, render_template_string, request
 from datetime import datetime
+from db import get_db_connection
 
-app = Flask(__name__)
+add_visitor_app = Blueprint('add_visitor', __name__)
 
-@app.route('/add_visitor', methods=['GET', 'POST'])
+@add_visitor_app.route('/add_visitor', methods=['GET', 'POST'])
 def add_visitor():
     if request.method == 'POST':
         # Retrieve form data
@@ -15,9 +17,13 @@ def add_visitor():
         visit_reason = request.form['visit_reason']
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
+        # Establish the connection to the database
+        conn = get_db_connection()
+
+        if conn is None:
+            return "Error: Unable to connect to the database."
+
         try:
-            # Database operations
-            conn = get_db_connection()
             cursor = conn.cursor()
             query = """
                 INSERT INTO visitors 
@@ -30,7 +36,7 @@ def add_visitor():
             conn.close()
             return "Visitor added successfully! <br> <a href='/'>Back to Home</a>"
         except Exception as e:
-            return f"An error occurred: {e}"
+            return f"An error occurred during the database operation: {e}"
 
     # Render form for GET request
     return render_template_string("""
@@ -73,6 +79,3 @@ def add_visitor():
     </body>
     </html>
     """)
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)

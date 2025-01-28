@@ -1,10 +1,11 @@
-from flask import Flask, render_template_string
-from db import get_db_connection  # Assuming get_db_connection is defined in db.py
+from flask import Blueprint, render_template_string
+from db import get_db_connection 
 
-app = Flask(__name__)
+# app = Flask(__name__)
+fetch_all_app = Blueprint('fetch_all', __name__)
 
-@app.route('/all_visitors', methods=['GET'])
-def all_visitors():
+@fetch_all_app.route('/fetch_all', methods=['GET'])
+def fetch_all():
     try:
         # Fetch all visitors from the database
         conn = get_db_connection()
