@@ -16,7 +16,7 @@ def index():
         <h1>Visitor Management System - Sycatel</h1>
         <ul>
             <li><a href="/add_visitor">Add New Visitor</a></li>
-            <li><a href="/fetch_all">View All Visitors</a></li>
+            <li><a href="/all_visitors">View All Visitors</a></li>
             <li><a href="/filter_visitors">Filter Visitors by Reason</a></li>
         </ul>
     </body>
